@@ -57,7 +57,7 @@ type Specs struct {
 }
 
 type Orders struct {
-	id int
+	Id int
 
 	order_uid    string
 	track_number string
