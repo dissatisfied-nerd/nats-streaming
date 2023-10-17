@@ -6,8 +6,7 @@ import (
 	"math/rand"
 	"os"
 
-	model "publisher/dbmodel"
-
+	model "github.com/dissatisfied-nerd/nats-streaming/model"
 	"github.com/nats-io/stan.go"
 )
 
