@@ -11,6 +11,11 @@ export NATS_CHANNEL="test"
 
 export PUBLISHER_DATA_PATH="/home/axr/projects/nats-server/publisher/data/model.json"
 
-cd ${publisher_dir}
-go run main.go
+export DB_HOST="localhost"
+export DB_PORT="5432"
+export DB_USER="postgres"
+export DB_PASSWORD="postgres"
+export DB_NAME="nats_server"
+
+go run server/main.go
 
