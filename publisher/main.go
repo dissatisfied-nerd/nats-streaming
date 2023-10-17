@@ -2,35 +2,29 @@ package main
 
 import (
 	"encoding/json"
-	"log"
 	"math/rand"
 	"os"
 
-	"github.com/dissatisfied-nerd/nats-streaming/model"
+	cherr "github.com/dissatisfied-nerd/nats-streaming/pkg/checkerror"
+	"github.com/dissatisfied-nerd/nats-streaming/pkg/model"
 	"github.com/nats-io/stan.go"
 )
 
-func CheckErr(err error) {
-	if err != nil {
-		log.Fatal(err)
-	}
-}
-
 func ParseFile(dataPath string) model.Orders {
 	file, err := os.ReadFile(dataPath)
-	CheckErr(err)
+	cherr.CheckErr(err)
 
 	var orders model.Orders
 
 	err = json.Unmarshal(file, &orders)
-	CheckErr(err)
+	cherr.CheckErr(err)
 
 	return orders
 }
 
 func NatsConnect(natsUrl, natsCluster, natsClient string) stan.Conn {
 	connection, err := stan.Connect(natsCluster, natsClient, stan.NatsURL(natsUrl))
-	CheckErr(err)
+	cherr.CheckErr(err)
 
 	return connection
 }
@@ -51,9 +45,9 @@ func main() {
 		orders.Id = rand.Intn(100)
 
 		message, err := json.Marshal(orders)
-		CheckErr(err)
+		cherr.CheckErr(err)
 
 		err = connection.Publish(natsChannel, message)
-		CheckErr(err)
+		cherr.CheckErr(err)
 	}
 }

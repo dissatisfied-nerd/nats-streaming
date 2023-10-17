@@ -2,6 +2,8 @@ github.com/dissatisfied-nerd/nats-streaming/internal v0.0.0-20231017163410-8b1a1
 github.com/dissatisfied-nerd/nats-streaming/internal v0.0.0-20231017163410-8b1a1c6cc7f0/go.mod h1:MZIJJwtZW+4tVzkarcUAN78MMUQhNzcVwICcOLVBJ38=
 github.com/dissatisfied-nerd/nats-streaming/model v0.0.0-20231017151840-b8f2899aa916 h1:0+gUAEgHAEBQlw74IrCt6KLul/ewdWSxMY3vio4A0lY=
 github.com/dissatisfied-nerd/nats-streaming/model v0.0.0-20231017151840-b8f2899aa916/go.mod h1:Skvv0N49O2khhmu49K6Hd4qPpRe1H9v9FajT8Ri0AME=
+github.com/dissatisfied-nerd/nats-streaming/pkg/checkerror v0.0.0-20231017163951-e4c7909f3b0b h1:yc2NObclpBmGLL8fJTA0rVYnHC2i4IChFACIUdO/G5I=
+github.com/dissatisfied-nerd/nats-streaming/pkg/checkerror v0.0.0-20231017163951-e4c7909f3b0b/go.mod h1:V2qE3wWiXb7kM7falvt4Bk+mzVeeGbTIRHF5gEInwDo=
 github.com/dissatisfied-nerd/nats-streaming/pkg/model v0.0.0-20231017163410-8b1a1c6cc7f0 h1:G4QedleYeDkK87WUC0sjg90u7XI1PEG0JiD0/gCPDB8=
 github.com/dissatisfied-nerd/nats-streaming/pkg/model v0.0.0-20231017163410-8b1a1c6cc7f0/go.mod h1:TL+gxFMuGiOzrz2oOZlrgGXy09K695EUTNfh4RIX2+w=
 github.com/gogo/protobuf v1.3.2 h1:Ov1cvc58UF3b5XjBnZv7+opcTcQFZebYjWzi34vdm4Q=
