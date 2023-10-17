@@ -6,7 +6,7 @@ import (
 	"math/rand"
 	"os"
 
-	model "github.com/dissatisfied-nerd/nats-streaming/model"
+	"github.com/dissatisfied-nerd/nats-streaming/model"
 	"github.com/nats-io/stan.go"
 )
 
