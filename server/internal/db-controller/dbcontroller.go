@@ -2,6 +2,7 @@ package dbcontroller
 
 import (
 	"context"
+	"database/sql"
 	"fmt"
 	"os"
 	"sync"
@@ -9,6 +10,11 @@ import (
 	"github.com/dissatisfied-nerd/nats-streaming/pkg/checkerror"
 	"github.com/jackc/pgx/v5"
 )
+
+type DBClient struct {
+	conn sql.DB
+	err  error
+}
 
 var (
 	dbHost     = os.Getenv("DB_HOST")
