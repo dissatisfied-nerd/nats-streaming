@@ -2,20 +2,24 @@
 
 main_dir="/home/axr/projects/nats-server"
 publisher_dir="${main_dir}/publisher"
-subscriber_dir="${main_dir}/subscriber"
+server_dir="${main_dir}/server"
 
-export NATS_URL="localhost:4040"
-export NATS_CLUSTER="test-nats"
+export NATS_URL="nats://user:password@localhost:4222"
+export NATS_CLUSTER="test"
 export NATS_CLIENT="test"
 export NATS_CHANNEL="test"
 
 export PUBLISHER_DATA_PATH="/home/axr/projects/nats-server/publisher/data/model.json"
 
-export DB_HOST="localhost"
-export DB_PORT="5432"
-export DB_USER="postgres"
-export DB_PASSWORD="postgres"
-export DB_NAME="nats_server"
+export POSTGRES_URL="postgres://postgres:postgres@localhost:5432/nats_streaming"
 
-go run server/main.go
+if [[ $1 == "publisher" ]]; then
+    cd ${publisher_dir}
+fi
+
+if [[ $1 == "server" ]]; then
+    cd ${server_dir}
+fi
+
+go run main.go
 

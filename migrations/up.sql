@@ -2,8 +2,6 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
 CREATE TABLE IF NOT EXISTS payment
 (
-    id            UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
-
     transaction   varchar(128),
     request_id    varchar(128),
     currency      varchar(8),
@@ -33,8 +31,6 @@ CREATE TABLE IF NOT EXISTS items
 
 CREATE TABLE IF NOT EXISTS delivery
 (
-    id      UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
-
     name    varchar(128),
     phone   varchar(128),
     zip     varchar(128),
@@ -44,10 +40,8 @@ CREATE TABLE IF NOT EXISTS delivery
     email   varchar(128)
 );
 
-CREATE TABLE IF NOT EXISTS specs
+CREATE TABLE IF NOT EXISTS orders
 (
-    id                 UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
-
     locale             varchar(8),
     internal_signature varchar(128),
     customer_id        varchar(128),
@@ -56,12 +50,7 @@ CREATE TABLE IF NOT EXISTS specs
     sm_id              int,
     date_created       timestamp,
     off_shard          int
-);
-
-CREATE TABLE IF NOT EXISTS orders
-(
-    id                 UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
-   
+ 
     order_uid    varchar(128) PRIMARY KEY,
     track_number varchar(128),
     entry        varchar(128),

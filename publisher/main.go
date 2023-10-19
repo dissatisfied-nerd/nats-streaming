@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"math/rand"
 	"os"
 
@@ -36,6 +37,8 @@ func main() {
 	natsUrl := os.Getenv("NATS_URL")
 	natsCluster := os.Getenv("NATS_CLUSTER")
 	natsClient := os.Getenv("NATS_CLIENT")
+
+	fmt.Println(natsUrl, natsClient, natsCluster)
 
 	connection := NatsConnect(natsUrl, natsCluster, natsClient)
 
