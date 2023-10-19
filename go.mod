@@ -4,6 +4,7 @@ go 1.21.1
 
 require (
 	github.com/armon/go-metrics v0.4.1 // indirect
+	github.com/dissatisfied-nerd/nats-streaming/pkg/model v0.0.0-20231017204511-c156657e1388 // indirect
 	github.com/fatih/color v1.13.0 // indirect
 	github.com/go-sql-driver/mysql v1.7.1 // indirect
 	github.com/gogo/protobuf v1.3.2 // indirect

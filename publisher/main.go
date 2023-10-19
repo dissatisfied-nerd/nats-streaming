@@ -46,7 +46,7 @@ func main() {
 
 	natsChannel := os.Getenv("NATS_CHANNEL")
 
-	var order model.Order
+	var order model.Orders
 	var delay time.Duration = 10 * time.Second
 
 	for {
