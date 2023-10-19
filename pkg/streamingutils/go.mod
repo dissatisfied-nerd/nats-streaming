@@ -1,4 +1,4 @@
-module github.com/dissatisfied-nerd/pkg/streamingutils
+module github.com/dissatisfied-nerd/nats-streaming/pkg/streamingutils
 
 go 1.21.1
 
