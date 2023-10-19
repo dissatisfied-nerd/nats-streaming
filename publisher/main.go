@@ -9,27 +9,7 @@ import (
 
 	cherr "github.com/dissatisfied-nerd/nats-streaming/pkg/checkerror"
 	"github.com/dissatisfied-nerd/nats-streaming/pkg/model"
-	"github.com/nats-io/stan.go"
 )
-
-func ParseFile(dataPath string) model.Orders {
-	file, err := os.ReadFile(dataPath)
-	cherr.CheckErr(err)
-
-	var orders model.Orders
-
-	err = json.Unmarshal(file, &orders)
-	cherr.CheckErr(err)
-
-	return orders
-}
-
-func NSConnect(nsUrl, nsCluster, nsClient string) stan.Conn {
-	connection, err := stan.Connect(nsCluster, nsClient, stan.NatsURL(nsUrl))
-	cherr.CheckErr(err)
-
-	return connection
-}
 
 func main() {
 	dataPath := os.Getenv("PUBLISHER_DATA_PATH")
