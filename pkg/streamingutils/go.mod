@@ -3,12 +3,12 @@ module github.com/dissatisfied-nerd/nats-streaming/pkg/streamingutils
 go 1.21.1
 
 require (
+	github.com/dissatisfied-nerd/nats-streaming/pkg/checkerror v0.0.0-20231019163752-b77f0f77bee7
 	github.com/dissatisfied-nerd/nats-streaming/pkg/model v0.0.0-20231019163752-b77f0f77bee7
 	github.com/nats-io/stan.go v0.10.4
 )
 
 require (
-	github.com/dissatisfied-nerd/nats-streaming/pkg/checkerror v0.0.0-20231019163752-b77f0f77bee7 // indirect
 	github.com/gogo/protobuf v1.3.2 // indirect
 	github.com/golang/protobuf v1.5.3 // indirect
 	github.com/klauspost/compress v1.17.0 // indirect
