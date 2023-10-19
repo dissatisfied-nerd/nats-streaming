@@ -39,7 +39,7 @@ type Delivery struct {
 	Email   string `db:"email" json:"email"`
 }
 
-type Orders struct {
+type Order struct {
 	Locale             string    `db:"locale" json:"locale"`
 	Internal_signature string    `db:"internal_signature" json:"internal_signature"`
 	Customer_id        string    `db:"customer_id" json:"customer_id"`
