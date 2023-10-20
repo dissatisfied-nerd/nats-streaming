@@ -3,10 +3,10 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"log"
 	"os"
 	"time"
 
-	cherr "github.com/dissatisfied-nerd/nats-streaming/pkg/checkerror"
 	"github.com/dissatisfied-nerd/nats-streaming/pkg/model"
 
 	"github.com/nats-io/stan.go"
@@ -14,19 +14,28 @@ import (
 
 func NSConnect(nsUrl, nsCluster, nsClient string) stan.Conn {
 	connection, err := stan.Connect(nsCluster, nsClient, stan.NatsURL(nsUrl))
-	cherr.CheckErr(err)
+
+	if err != nil {
+		log.Fatal(err)
+	}
 
 	return connection
 }
 
 func ParseOrders(dataPath string) model.Order {
 	file, err := os.ReadFile(dataPath)
-	cherr.CheckErr(err)
+
+	if err != nil {
+		log.Fatal(err)
+	}
 
 	var orders model.Order
 
 	err = json.Unmarshal(file, &orders)
-	cherr.CheckErr(err)
+
+	if err != nil {
+		log.Fatal(err)
+	}
 
 	return orders
 }
@@ -50,10 +59,16 @@ func main() {
 
 	for {
 		message, err := json.Marshal(order)
-		cherr.CheckErr(err)
+
+		if err != nil {
+			log.Fatal(err)
+		}
 
 		err = connection.Publish(natsChannel, message)
-		cherr.CheckErr(err)
+
+		if err != nil {
+			log.Fatal(err)
+		}
 
 		fmt.Printf("Sent message with order's Id = %s", order.Order_uid)
 
