@@ -11,7 +11,9 @@ export NATS_CHANNEL="test"
 
 export PUBLISHER_DATA_PATH="/home/axr/projects/nats-server/publisher/data/model.json"
 
-export POSTGRES_URL="postgres://postgres:postgres@localhost:5432/nats_streaming"
+export POSTGRES_USER="postgres"
+export POSTGRES_PASSWORD="postgres"
+export POSTGRES_NAME="nats_streaming"
 
 if [[ $1 == "publisher" ]]; then
     cd ${publisher_dir}
@@ -21,5 +23,5 @@ if [[ $1 == "server" ]]; then
     cd ${server_dir}
 fi
 
-go run main.go
+go run .
 

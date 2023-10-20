@@ -2,11 +2,12 @@ package main
 
 import (
 	"os"
-
-	dbc "github.com/dissatisfied-nerd/nats-streaming/pkg/dbcontroller"
 )
 
 func main() {
-	dbURL := os.Getenv("POSTGRES_URL")
-	dbc.NewDbclient(dbURL)
+	dbUser := os.Getenv("POSTGRES_USER")
+	dbPassword := os.Getenv("POSTGRES_PASSWORD")
+	dbName := os.Getenv("POSTGRES_NAME")
+
+	NewDbclient(dbUser, dbPassword, dbName)
 }
