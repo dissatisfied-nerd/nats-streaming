@@ -8,6 +8,7 @@ import (
 
 	cherr "github.com/dissatisfied-nerd/nats-streaming/pkg/checkerror"
 	"github.com/dissatisfied-nerd/nats-streaming/pkg/model"
+
 	"github.com/nats-io/stan.go"
 )
 
