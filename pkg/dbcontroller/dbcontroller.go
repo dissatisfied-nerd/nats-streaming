@@ -2,19 +2,18 @@ package dbcontroller
 
 import (
 	"log"
-	"os"
 
 	"github.com/jmoiron/sqlx"
 )
 
-func NewDbclient(*sqlx.Conn, error) {
-	var DbURL = os.Getenv("POSTGRES_URL")
-
-	db, err := sqlx.Connect("postgres", DbURL)
+func NewDbclient(dbURL string) (*sqlx.DB, error) {
+	db, err := sqlx.Connect("postgres", dbURL)
 
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	db.Ping()
+
+	return db, nil
 }
