@@ -55,7 +55,7 @@ func main() {
 		err = connection.Publish(natsChannel, message)
 		cherr.CheckErr(err)
 
-		fmt.Printf("Sent message with order's Id = %s", order.Order_uid)
+		fmt.Printf("Sent message with order_uid = %s\n", order.Order_uid)
 
 		time.Sleep(delay)
 	}
