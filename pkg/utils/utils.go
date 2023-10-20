@@ -2,6 +2,7 @@ package utils
 
 import (
 	"encoding/json"
+	"log"
 	"os"
 
 	cherr "github.com/dissatisfied-nerd/nats-streaming/pkg/checkerror"
@@ -27,4 +28,10 @@ func ParseOrders(dataPath string) model.Order {
 	cherr.CheckErr(err)
 
 	return orders
+}
+
+func CheckErr(err error) {
+	if err != nil {
+		log.Fatal(err)
+	}
 }

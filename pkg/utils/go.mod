@@ -4,7 +4,7 @@ go 1.21.1
 
 require (
 	github.com/dissatisfied-nerd/nats-streaming/pkg/checkerror v0.0.0-20231019171905-f7da2840012f
-	github.com/dissatisfied-nerd/nats-streaming/pkg/model v0.0.0-20231019171905-f7da2840012f
+	github.com/dissatisfied-nerd/nats-streaming/pkg/model v0.0.0-20231019235718-7dda589ba862
 	github.com/nats-io/stan.go v0.10.4
 )
 
