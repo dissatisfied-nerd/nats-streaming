@@ -6,6 +6,7 @@ import (
 	"os"
 	"time"
 
+	cherr "github.com/dissatisfied-nerd/nats-streaming/pkg/checkerror"
 	"github.com/dissatisfied-nerd/nats-streaming/pkg/model"
 	"github.com/nats-io/stan.go"
 )
@@ -31,7 +32,7 @@ func ParseOrders(dataPath string) model.Order {
 
 func main() {
 	dataPath := os.Getenv("PUBLISHER_DATA_PATH")
-	order := utl.ParseOrders(dataPath)
+	order := ParseOrders(dataPath)
 
 	nsUrl := os.Getenv("NATS_URL")
 	nsCluster := os.Getenv("NATS_CLUSTER")
@@ -40,7 +41,7 @@ func main() {
 	fmt.Printf("URL: %s, Cluster_ID: %s, Client_ID: %s \n", nsUrl, nsCluster, nsClient)
 	fmt.Println("Connecting to nats-streaming-server...")
 
-	connection := utl.NSConnect(nsUrl, nsCluster, nsClient)
+	connection := NSConnect(nsUrl, nsCluster, nsClient)
 
 	natsChannel := os.Getenv("NATS_CHANNEL")
 
