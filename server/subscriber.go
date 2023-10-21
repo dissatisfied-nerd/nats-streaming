@@ -1,4 +1,4 @@
-package server
+package main
 
 import (
 	"encoding/json"
@@ -35,7 +35,8 @@ func NewNSConnection(nsUrl, nsCluster, nsClient string) *NSConnection {
 	return &NSConn
 }
 
-func (ns *NSConnection) Listen() {
+func (ns *NSConnection) Listen(db *DBClient) {
+
 	_, err := ns.conn.Subscribe(
 		ns.Channel, func(msg *stan.Msg) {
 			var order model.Order
@@ -43,13 +44,17 @@ func (ns *NSConnection) Listen() {
 			err := json.Unmarshal(msg.Data, &order)
 
 			if err != nil {
-				log.Fatal(err)
+				log.Fatalf("SUBSCRIBER: %f", err)
 			}
 
 			fmt.Println(order.Order_uid)
-		})
+
+			db.InsertOrder(order)
+
+		}, stan.StartWithLastReceived())
 
 	if err != nil {
-		log.Fatal(err)
+		log.Fatalf("SUBSCRIBER: %s", err)
 	}
+
 }

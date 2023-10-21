@@ -1,7 +1,9 @@
-package server
+package main
 
 import (
 	"os"
+
+	"time"
 )
 
 func main() {
@@ -9,13 +11,18 @@ func main() {
 	dbPassword := os.Getenv("POSTGRES_PASSWORD")
 	dbName := os.Getenv("POSTGRES_NAME")
 
-	NewDbclient(dbUser, dbPassword, dbName)
+	db := NewDbclient(dbUser, dbPassword, dbName)
 
 	nsURL := os.Getenv("NATS_URL")
 	nsCluster := os.Getenv("NATS_CLUSTER")
-	nsClient := os.Getenv("NATS_CLIENT")
+	nsClient := os.Getenv("NATS_SUBSCRIBER")
+	nsChannel := os.Getenv("NATS_CHANNEL")
 
 	ns := NewNSConnection(nsURL, nsCluster, nsClient)
 
-	ns.Listen()
+	ns.Channel = nsChannel
+
+	ns.Listen(db)
+
+	time.Sleep(10 * time.Second)
 }

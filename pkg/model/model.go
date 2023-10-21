@@ -53,7 +53,7 @@ type Order struct {
 	Track_number string `db:"track_number" json:"track_number"`
 	Entry        string `db:"entry" json:"entry"`
 
-	Delivery Delivery `db:"delivery" json:"delivery" marshal:"1"`
-	Payment  Payment  `db:"payment" json:"payment" marshal:"2"`
-	Items    []Items  `db:"items" json:"items" marshal:"3"`
+	Delivery Delivery `json:"delivery" marshal:"1"`
+	Payment  Payment  `json:"payment" marshal:"2"`
+	Items    []Items  `json:"items" marshal:"3"`
 }

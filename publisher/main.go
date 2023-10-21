@@ -46,7 +46,7 @@ func main() {
 
 	nsUrl := os.Getenv("NATS_URL")
 	nsCluster := os.Getenv("NATS_CLUSTER")
-	nsClient := os.Getenv("NATS_CLIENT")
+	nsClient := os.Getenv("NATS_PUBLISHER")
 
 	fmt.Printf("URL: %s, Cluster_ID: %s, Client_ID: %s \n", nsUrl, nsCluster, nsClient)
 	fmt.Println("Connecting to nats-streaming-server...")

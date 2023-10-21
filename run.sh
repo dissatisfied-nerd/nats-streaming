@@ -5,9 +5,10 @@ publisher_dir="${main_dir}/publisher"
 server_dir="${main_dir}/server"
 
 export NATS_URL="localhost:8080"
-export NATS_CLUSTER="test"
-export NATS_CLIENT="test"
-export NATS_CHANNEL="test"
+export NATS_CLUSTER="cluster"
+export NATS_SUBSCRIBER="client"
+export NATS_PUBLISHER="publisher"
+export NATS_CHANNEL="channel"
 
 export PUBLISHER_DATA_PATH="/home/axr/projects/nats-server/publisher/data/model.json"
 

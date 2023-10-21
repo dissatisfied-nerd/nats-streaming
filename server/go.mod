@@ -5,7 +5,8 @@ go 1.21.2
 require github.com/dissatisfied-nerd/nats-streaming/pkg/dbcontroller v0.0.0-20231020223509-414c34d66a5e
 
 require (
-	github.com/dissatisfied-nerd/nats-streaming/pkg/model v0.0.0-20231020225552-d19220d96df3 // indirect
+	github.com/dissatisfied-nerd/nats-streaming/pkg/model v0.0.0-20231021000635-298b11f1f7b0 // indirect
+	github.com/fatih/structs v1.1.0 // indirect
 	github.com/gogo/protobuf v1.3.2 // indirect
 	github.com/jmoiron/sqlx v1.3.5 // indirect
 	github.com/lib/pq v1.10.9 // indirect
