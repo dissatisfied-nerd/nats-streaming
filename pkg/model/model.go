@@ -22,7 +22,7 @@ type Items struct {
 	Rid          string `db:"rid" json:"rid"`
 	Name         string `db:"name" json:"name"`
 	Sale         int    `db:"sale" json:"sale"`
-	Size         int    `db:"size" json:"size"`
+	Size         string `db:"size" json:"size"`
 	Total_price  int    `db:"total_price" json:"total_price"`
 	Nm_id        int    `db:"nm_id" json:"nm_id"`
 	Brand        string `db:"brand" json:"brand"`
