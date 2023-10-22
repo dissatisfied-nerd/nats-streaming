@@ -3,6 +3,8 @@ package model
 import "time"
 
 type Payment struct {
+	Order_id string `db:order_id`
+
 	Transaction   string `db:"transaction" json:"transaction"`
 	Request_id    string `db:"request_id" json:"request_id"`
 	Currency      string `db:"currency" json:"currency"`
@@ -30,6 +32,8 @@ type Items struct {
 }
 
 type Delivery struct {
+	Order_id string `db:order_id`
+
 	Name    string `db:"name" json:"name"`
 	Phone   string `db:"phone" json:"phone"`
 	Zip     string `db:"zip" json:"zip"`

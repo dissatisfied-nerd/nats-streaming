@@ -130,3 +130,15 @@ func (db *DBClient) InsertOrder(order model.Order) {
 		}
 	}
 }
+
+func (db *DBClient) GetOrderById(id string) model.Order {
+	order := model.Order{}
+
+	err := db.conn.Get(&order, "SELECT * FROM orders WHERE order_uid=$1", id)
+
+	if err != nil {
+		log.Fatalf("DATABASR SELECT: %f", err)
+	}
+
+	return order
+}

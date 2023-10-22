@@ -2,6 +2,8 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
 CREATE TABLE IF NOT EXISTS payment
 (
+    order_id varchar(128) REFERENCES orders(order_uid) 
+    
     transaction   varchar(128),
     request_id    varchar(128),
     currency      varchar(8),
@@ -11,13 +13,14 @@ CREATE TABLE IF NOT EXISTS payment
     bank          varchar(128),
     delivery_cost int,
     goods_total   int,
-    custom_fee    int
+    custom_fee    int,
 );
 
 CREATE TABLE IF NOT EXISTS items
 (
+    track_number varchar(128) REFERENCES orders(track_number),
+
     chrt_id      int,
-    track_number varchar(128),
     price        int,
     rid          varchar(128),
     name         varchar(128),
@@ -31,17 +34,23 @@ CREATE TABLE IF NOT EXISTS items
 
 CREATE TABLE IF NOT EXISTS delivery
 (
+    order_id varchar(128) REFERENCES orders(order_uid) 
+
     name    varchar(128),
     phone   varchar(128),
     zip     varchar(128),
     city    varchar(128),
     address varchar(128),
     region  varchar(128),
-    email   varchar(128)
+    email   varchar(128),
 );
 
 CREATE TABLE IF NOT EXISTS orders
 (
+    order_uid    varchar(128) PRIMARY KEY,
+    track_number varchar(128),
+    entry        varchar(128),
+
     locale             varchar(8),
     internal_signature varchar(128),
     customer_id        varchar(128),
@@ -49,10 +58,6 @@ CREATE TABLE IF NOT EXISTS orders
     shardkey           varchar(128),
     sm_id              int,
     date_created       timestamp,
-    off_shard          int,
- 
-    order_uid    varchar(128) PRIMARY KEY,
-    track_number varchar(128),
-    entry        varchar(128)
+    off_shard          int
 );
 
