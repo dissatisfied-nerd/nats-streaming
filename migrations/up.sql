@@ -1,50 +1,3 @@
-CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
-
-CREATE TABLE IF NOT EXISTS payment
-(
-    order_id varchar(128) REFERENCES orders(order_uid) 
-    
-    transaction   varchar(128),
-    request_id    varchar(128),
-    currency      varchar(8),
-    provider      varchar(128),
-    amount        int,
-    payment_id    varchar(128),
-    bank          varchar(128),
-    delivery_cost int,
-    goods_total   int,
-    custom_fee    int,
-);
-
-CREATE TABLE IF NOT EXISTS items
-(
-    track_number varchar(128) REFERENCES orders(track_number),
-
-    chrt_id      int,
-    price        int,
-    rid          varchar(128),
-    name         varchar(128),
-    sale         int,
-    size         int,
-    total_price  int,
-    nm_id        int,
-    brand        varchar(128),
-    status       int
-);
-
-CREATE TABLE IF NOT EXISTS delivery
-(
-    order_id varchar(128) REFERENCES orders(order_uid) 
-
-    name    varchar(128),
-    phone   varchar(128),
-    zip     varchar(128),
-    city    varchar(128),
-    address varchar(128),
-    region  varchar(128),
-    email   varchar(128),
-);
-
 CREATE TABLE IF NOT EXISTS orders
 (
     order_uid    varchar(128) PRIMARY KEY,
@@ -60,4 +13,50 @@ CREATE TABLE IF NOT EXISTS orders
     date_created       timestamp,
     off_shard          int
 );
+
+CREATE TABLE IF NOT EXISTS payment
+(
+    order_id varchar(128) REFERENCES orders(order_uid), 
+    
+    transaction   varchar(128),
+    request_id    varchar(128),
+    currency      varchar(8),
+    provider      varchar(128),
+    amount        int,
+    payment_id    varchar(128),
+    bank          varchar(128),
+    delivery_cost int,
+    goods_total   int,
+    custom_fee    int
+);
+
+CREATE TABLE IF NOT EXISTS items
+(
+    order_id varchar(128) REFERENCES orders(order_uid),
+
+    chrt_id      int,
+    price        int,
+    rid          varchar(128),
+    name         varchar(128),
+    sale         int,
+    size         int,
+    total_price  int,
+    nm_id        int,
+    brand        varchar(128),
+    status       int
+);
+
+CREATE TABLE IF NOT EXISTS delivery
+(
+    order_id varchar(128) REFERENCES orders(order_uid), 
+
+    name    varchar(128),
+    phone   varchar(128),
+    zip     varchar(128),
+    city    varchar(128),
+    address varchar(128),
+    region  varchar(128),
+    email   varchar(128)
+);
+
 

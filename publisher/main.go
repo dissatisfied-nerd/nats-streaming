@@ -60,6 +60,9 @@ func main() {
 
 	for {
 		order.Order_uid = fmt.Sprintf("%d", tmp)
+		order.Payment.Order_id = order.Order_uid
+		order.Delivery.Order_id = order.Order_uid
+
 		tmp++
 
 		message, err := json.Marshal(order)
