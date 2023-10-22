@@ -4,6 +4,8 @@ github.com/dissatisfied-nerd/nats-streaming/pkg/model v0.0.0-20231020225552-d192
 github.com/dissatisfied-nerd/nats-streaming/pkg/model v0.0.0-20231020225552-d19220d96df3/go.mod h1:TL+gxFMuGiOzrz2oOZlrgGXy09K695EUTNfh4RIX2+w=
 github.com/dissatisfied-nerd/nats-streaming/pkg/model v0.0.0-20231021000635-298b11f1f7b0 h1:pHW3Fisu4YuafB6w+ebHIcaFFISIRoOO/w9XFDF7sRk=
 github.com/dissatisfied-nerd/nats-streaming/pkg/model v0.0.0-20231021000635-298b11f1f7b0/go.mod h1:TL+gxFMuGiOzrz2oOZlrgGXy09K695EUTNfh4RIX2+w=
+github.com/dissatisfied-nerd/nats-streaming/pkg/model v0.0.0-20231021175221-a98e2564abaa h1:A0BihsEENDN6RQWa5oIabtYnDkUrmqhwq3O++mUN7KM=
+github.com/dissatisfied-nerd/nats-streaming/pkg/model v0.0.0-20231021175221-a98e2564abaa/go.mod h1:TL+gxFMuGiOzrz2oOZlrgGXy09K695EUTNfh4RIX2+w=
 github.com/fatih/structs v1.1.0 h1:Q7juDM0QtcnhCpeyLGQKyg4TOIghuNXrkL32pHAUMxo=
 github.com/fatih/structs v1.1.0/go.mod h1:9NiDSp5zOcgEDl+j00MP/WkGVPOlPRLejGD8Ga6PJ7M=
 github.com/go-sql-driver/mysql v1.6.0 h1:BCTh4TKNUYmOmMUcQ3IipzF5prigylS7XXjEkfCHuOE=

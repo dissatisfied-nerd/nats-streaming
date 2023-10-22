@@ -1,6 +1,6 @@
 db_up:
-	psql -U postgres -d nats_server -a -f ~/projects/wb-practice/migrations/up.sql > /dev/null  
+	psql -U postgres -d nats_streaming -a -f ~/projects/nats-server/migrations/up.sql > /dev/null  
 
 db_down:
-	psql -U postgres -d nats_server -a -f ~/projects/wb-practice/migrations/down.sql  
+	psql -U postgres -d nats_streaming -a -f ~/projects/nats-server/migrations/down.sql  
 

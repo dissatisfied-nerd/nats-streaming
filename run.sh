@@ -18,11 +18,42 @@ export POSTGRES_NAME="nats_streaming"
 
 if [[ $1 == "publisher" ]]; then
     cd ${publisher_dir}
+    go run .
 fi
 
 if [[ $1 == "server" ]]; then
     cd ${server_dir}
+    go run .
 fi
 
-go run .
+if [[ $1 == "all" ]]; then
+    (docker run -p 8080:8080 -p 8223:8223 nats-streaming -p 8080 -m 8223 -cid cluster) &
+    docker_pid=$!
+
+    echo "docker pid = ${docker_pid}"
+
+    sleep 1s
+
+    cd ${publisher_dir}
+    go run . &
+    publisher_pid=$!
+
+    echo "publisher pid = ${publisher_pid}"
+
+    cd ${server_dir}
+    go run . &
+    server_pid=$!
+
+    echo "server pid = ${server_pid}"
+
+    while [[ ${signal} == "" ]]
+    do
+        read signal
+    done
+
+    sudo kill ${docker_pid}
+    sudo kill ${publisher_pid}
+    sudo kill ${server_pid}
+fi
+
 

@@ -49,21 +49,10 @@ CREATE TABLE IF NOT EXISTS orders
     shardkey           varchar(128),
     sm_id              int,
     date_created       timestamp,
-    off_shard          int
+    off_shard          int,
  
     order_uid    varchar(128) PRIMARY KEY,
     track_number varchar(128),
-    entry        varchar(128),
-
-    specs_id     UUID REFERENCES specs (id),
-    delivery_id  UUID REFERENCES delivery (id),
-    payment_id   UUID REFERENCES payment (id)
-);
-
-CREATE TABLE IF NOT EXISTS orders_items
-(
-    order_id UUID REFERENCES orders (id),
-    item_id  UUID REFERENCES items (chrt_id),
-    PRIMARY KEY (order_id, item_id)
+    entry        varchar(128)
 );
 
