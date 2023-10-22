@@ -51,7 +51,7 @@ func (ns *NSConnection) Listen(db *DBClient) {
 
 			db.InsertOrder(order)
 
-		}, stan.StartWithLastReceived())
+		}, stan.DeliverAllAvailable())
 
 	if err != nil {
 		log.Fatalf("SUBSCRIBER: %s", err)

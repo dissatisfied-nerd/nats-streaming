@@ -24,7 +24,7 @@ func main() {
 
 	ns.Listen(db)
 
-	db.GetOrderById("1")
-
 	time.Sleep(10 * time.Second)
+
+	db.GetOrderById("1")
 }

@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS orders
 CREATE TABLE IF NOT EXISTS payment
 (
     order_id varchar(128) REFERENCES orders(order_uid), 
-    
+        
     transaction   varchar(128),
     request_id    varchar(128),
     currency      varchar(8),
@@ -34,6 +34,7 @@ CREATE TABLE IF NOT EXISTS items
 (
     order_id varchar(128) REFERENCES orders(order_uid),
 
+    track_number varchar(128),
     chrt_id      int,
     price        int,
     rid          varchar(128),

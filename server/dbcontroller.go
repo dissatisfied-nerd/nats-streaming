@@ -8,9 +8,9 @@ import (
 	"strings"
 
 	"github.com/dissatisfied-nerd/nats-streaming/pkg/model"
-	_ "github.com/lib/pq"
 
 	"github.com/jmoiron/sqlx"
+	_ "github.com/lib/pq"
 )
 
 type DBClient struct {
@@ -137,14 +137,16 @@ func (db *DBClient) GetOrderById(id string) model.Order {
 	err := db.conn.Get(&order, "SELECT * FROM orders WHERE order_uid=$1", id)
 
 	if err != nil {
-		log.Fatalf("DATABASR SELECT: %f", err)
+		log.Fatalf("DATABASE SELECT ORDER: %f", err)
 	}
 
-	err = db.conn.Get(&order.Payment, "SELECT * FROM orders WHERE order_uid=$1", id)
+	err = db.conn.Get(&order.Payment, "SELECT * FROM payment WHERE order_uid=$1", id)
 
 	if err != nil {
-		log.Fatalf("DATABASR SELECT: %f", err)
+		log.Fatalf("DATABASE SELECT: %f", err)
 	}
+
+	fmt.Println(order)
 
 	return order
 }
