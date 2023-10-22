@@ -1,9 +1,11 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"log"
 	"reflect"
+	"strings"
 
 	"github.com/dissatisfied-nerd/nats-streaming/pkg/model"
 	_ "github.com/lib/pq"
@@ -40,75 +42,52 @@ func NewDbclient(dbUser, dbPassword, dbName string) *DBClient {
 	return &db
 }
 
-func generateQuery(tableName, data interface{}) string {
-	query := fmt.Sprintf("INSERT INTO %s (", tableName)
+func generateQuery(tableName, data interface{}) (string, interface{}) {
+	var columns []string
+	var variables []string
+	var insertValues []interface{}
 
-	value := reflect.ValueOf(data)
-	numOfFields := value.NumField()
-	strcutType := value.Type()
+	dataValue := reflect.ValueOf(data)
+	numOfFields := dataValue.NumField()
+	dataType := dataValue.Type()
 
-	for i := 0; i < numOfFields; i++ {
-		field := strcutType.Field(i)
-		tag := field.Tag.Get("db")
+	for idx := 0; idx < numOfFields; idx++ {
+		field := dataType.Field(idx)
+		fieldValue := dataValue.Field(idx).Interface()
 
-		if len(tag) > 0 {
-			query += fmt.Sprintf("%s,", tag)
+		if len(field.Tag.Get("db")) > 0 {
+			var insertValue interface{}
+
+			if len(field.Tag.Get("marsahl")) == 0 {
+				insertValue = fieldValue
+			} else {
+				var err error
+
+				insertValue, err = json.Marshal(fieldValue)
+
+				if err != nil {
+					log.Fatalf("DATABASE GENERATE QUERY: %f", err)
+				}
+			}
+
+			columns = append(columns, field.Tag.Get("db"))
+			variables = append(variables, fmt.Sprintf("$%d", len(columns)))
+			insertValues = append(insertValues, insertValue)
 		}
 	}
 
-	query = query[:len(query)-1] + ") VALUES ("
+	query := fmt.Sprintf("INSERT INTO %s (%s) VALUES (%s)",
+		tableName, strings.Join(columns, ", "), strings.Join(variables, ", "))
 
-	for i := 0; i < numOfFields; i++ {
-		field := strcutType.Field(i)
-		tag := field.Tag.Get("db")
-
-		if len(tag) > 0 {
-			query += fmt.Sprintf(":%s,", tag)
-		}
-	}
-
-	query = query[:len(query)-1] + ")"
-
-	return query
+	return query, insertValues
 }
 
 func (db *DBClient) InsertOrder(order model.Order) {
-	orderQuery := generateQuery("order", order)
-	paymentQuery := generateQuery("payment", order.Payment)
-	deliveryQuery := generateQuery("delivery", order.Delivery)
+	query, insertValues := generateQuery("orders", order)
 
-	var itemsQuery []string
-
-	for idx := range order.Items {
-		itemsQuery = append(itemsQuery, generateQuery("items", order.Items[idx]))
-	}
-
-	fmt.Println(orderQuery)
-
-	_, err := db.conn.NamedExec(orderQuery, order)
-
-	if err != nil {
-		fmt.Println(err)
-		log.Fatalf("DATABASE INSERT: %f", err)
-	}
-
-	_, err = db.conn.NamedExec(paymentQuery, order.Payment)
+	_, err := db.conn.Exec(query, insertValues)
 
 	if err != nil {
 		log.Fatalf("DATABASE INSERT: %f", err)
-	}
-
-	_, err = db.conn.NamedExec(deliveryQuery, order.Delivery)
-
-	if err != nil {
-		log.Fatalf("DATABASE INSERT: %f", err)
-	}
-
-	for idx := range itemsQuery {
-		_, err = db.conn.NamedExec(itemsQuery[idx], order.Items[idx])
-
-		if err != nil {
-			log.Fatalf("DATABASE INSERT: %f", err)
-		}
 	}
 }
