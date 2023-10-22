@@ -42,7 +42,7 @@ func NewDbclient(dbUser, dbPassword, dbName string) *DBClient {
 	return &db
 }
 
-func generateQuery(tableName, data interface{}) (string, interface{}) {
+func generateQuery(tableName, data interface{}) (string, []interface{}) {
 	var columns []string
 	var variables []string
 	var insertValues []interface{}
@@ -85,7 +85,7 @@ func generateQuery(tableName, data interface{}) (string, interface{}) {
 func (db *DBClient) InsertOrder(order model.Order) {
 	query, insertValues := generateQuery("orders", order)
 
-	_, err := db.conn.Exec(query, insertValues)
+	_, err := db.conn.Exec(query, insertValues...)
 
 	if err != nil {
 		log.Fatalf("DATABASE INSERT: %f", err)
