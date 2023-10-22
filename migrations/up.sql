@@ -1,7 +1,6 @@
 CREATE TABLE IF NOT EXISTS orders
 (
     order_uid    varchar(128) PRIMARY KEY,
-    track_number varchar(128),
     entry        varchar(128),
 
     locale             varchar(8),
@@ -16,7 +15,7 @@ CREATE TABLE IF NOT EXISTS orders
 
 CREATE TABLE IF NOT EXISTS payment
 (
-    order_id varchar(128) REFERENCES orders(order_uid), 
+    order_id varchar(128) PRIMARY KEY, 
         
     transaction   varchar(128),
     request_id    varchar(128),
@@ -32,9 +31,8 @@ CREATE TABLE IF NOT EXISTS payment
 
 CREATE TABLE IF NOT EXISTS items
 (
-    order_id varchar(128) REFERENCES orders(order_uid),
-
-    track_number varchar(128),
+    track_number varchar(128) PRIMARY KEY,
+    
     chrt_id      int,
     price        int,
     rid          varchar(128),
@@ -49,7 +47,7 @@ CREATE TABLE IF NOT EXISTS items
 
 CREATE TABLE IF NOT EXISTS delivery
 (
-    order_id varchar(128) REFERENCES orders(order_uid), 
+    order_id varchar(128) PRIMARY KEY,
 
     name    varchar(128),
     phone   varchar(128),
