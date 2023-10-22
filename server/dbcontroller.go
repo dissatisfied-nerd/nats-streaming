@@ -143,20 +143,63 @@ func (db *DBClient) GetOrderById(id string) model.Order {
 	err = db.conn.Get(&order.Payment, "SELECT * FROM payment WHERE order_id=$1", id)
 
 	if err != nil {
-		log.Fatalf("DATABASE SELECT: %f", err)
+		log.Fatalf("DATABASE SELECT PAYMENT: %f", err)
 	}
 
 	err = db.conn.Get(&order.Delivery, "SELECT * FROM delivery WHERE order_id=$1", id)
 
 	if err != nil {
-		log.Fatalf("DATABASE SELECT: %f", err)
+		log.Fatalf("DATABASE SELECT DELIVERY: %f", err)
 	}
 
-	err = db.conn.Get(&order.Items, "SELECT * FROM items WHERE order_id=$1", id)
+	items := model.Items{}
+
+	err = db.conn.Get(&items, "SELECT * FROM items WHERE order_id=$1", id)
 
 	if err != nil {
-		log.Fatalf("DATABASE SELECT: %f", err)
+		log.Fatalf("DATABASE SELECT ITEMS: %f", err)
 	}
 
+	fmt.Println(items.Brand)
+
 	return order
+}
+
+func (db *DBClient) GetAllOrders() []model.Order {
+	var result []model.Order
+	orders := []model.Order{}
+
+	err := db.conn.Select(&orders, "SELECT * FROM orders ORDER BY order_uid DESC")
+
+	if err != nil {
+		log.Fatalf("SELECT ALL: %f", err)
+	}
+
+	for _, order := range orders {
+		err := db.conn.Get(&order.Payment, "SELECT * FROM payment WHERE order_id=$1", order.Order_uid)
+
+		if err != nil {
+			log.Fatalf("SELECT ALL: %f", err)
+		}
+
+		err = db.conn.Get(&order.Delivery, "SELECT * FROM delivery WHERE order_id=$1", order.Order_uid)
+
+		if err != nil {
+			log.Fatalf("SELECT ALL: %f", err)
+		}
+
+		item := model.Items{}
+
+		err = db.conn.Get(&item, "SELECT * FROM items WHERE order_id=$1", order.Order_uid)
+
+		if err != nil {
+			log.Fatalf("SELECT ALL: %f", err)
+		}
+
+		order.Items = append(order.Items, item)
+
+		result = append(result, order)
+	}
+
+	return result
 }

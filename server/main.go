@@ -2,7 +2,6 @@ package main
 
 import (
 	"os"
-
 	"time"
 )
 
@@ -24,7 +23,7 @@ func main() {
 
 	ns.Listen(db)
 
-	time.Sleep(10 * time.Second)
+	time.Sleep(100 * time.Second)
 
-	db.GetOrderById("1698001363")
+	db.GetAllOrders()
 }

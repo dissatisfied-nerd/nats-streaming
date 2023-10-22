@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS payment
 
 CREATE TABLE IF NOT EXISTS items
 (
-    order_id varchar(128) PRIMARY KEY,
+    order_id varchar(128),
 
     track_number varchar(128),
     chrt_id      int,

@@ -64,6 +64,10 @@ func main() {
 		order.Delivery.Order_id = tmp
 		order.Payment.Order_id = tmp
 
+		for idx := range order.Items {
+			order.Items[idx].Order_id = tmp
+		}
+
 		message, err := json.Marshal(order)
 
 		if err != nil {

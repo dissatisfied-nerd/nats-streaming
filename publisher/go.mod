@@ -5,7 +5,7 @@ go 1.21.2
 require github.com/nats-io/stan.go v0.10.4
 
 require (
-	github.com/dissatisfied-nerd/nats-streaming/pkg/model v0.0.0-20231022185631-c6a12ca8db16 // indirect
+	github.com/dissatisfied-nerd/nats-streaming/pkg/model v0.0.0-20231022192025-7df14b97eec3 // indirect
 	github.com/gogo/protobuf v1.3.2 // indirect
 	github.com/golang/protobuf v1.5.3 // indirect
 	github.com/klauspost/compress v1.17.0 // indirect
