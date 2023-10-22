@@ -82,12 +82,51 @@ func generateQuery(tableName, data interface{}) (string, []interface{}) {
 	return query, insertValues
 }
 
-func (db *DBClient) InsertOrder(order model.Order) {
-	query, insertValues := generateQuery("orders", order)
+type queryData struct {
+	query        string
+	insertValues []interface{}
+}
 
-	_, err := db.conn.Exec(query, insertValues...)
+func (db *DBClient) InsertOrder(order model.Order) {
+	orderQuery, orderValues := generateQuery("orders", order)
+	paymentQuery, paymentValues := generateQuery("payment", order.Payment)
+	deliveryQuery, deliveryValues := generateQuery("delivery", order.Delivery)
+
+	var itemQueries []queryData
+
+	for idx := range order.Items {
+		var itemQuery queryData
+
+		curQuery, curInsertValues := generateQuery("items", order.Items[idx])
+		itemQuery.query = curQuery
+		itemQuery.insertValues = curInsertValues
+
+		itemQueries = append(itemQueries, itemQuery)
+	}
+
+	_, err := db.conn.Exec(orderQuery, orderValues...)
 
 	if err != nil {
 		log.Fatalf("DATABASE INSERT: %f", err)
+	}
+
+	_, err = db.conn.Exec(paymentQuery, paymentValues...)
+
+	if err != nil {
+		log.Fatalf("DATABASE INSERT: %f", err)
+	}
+
+	_, err = db.conn.Exec(deliveryQuery, deliveryValues...)
+
+	if err != nil {
+		log.Fatalf("DATABASE INSERT: %f", err)
+	}
+
+	for idx := range itemQueries {
+		_, err := db.conn.Exec(itemQueries[idx].query, itemQueries[idx].insertValues...)
+
+		if err != nil {
+			log.Fatalf("DATABASE INSERT: %f", err)
+		}
 	}
 }

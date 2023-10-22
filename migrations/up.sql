@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS payment
 
 CREATE TABLE IF NOT EXISTS items
 (
-    chrt_id      UUID PRIMARY KEY,
+    chrt_id      int,
     track_number varchar(128),
     price        int,
     rid          varchar(128),

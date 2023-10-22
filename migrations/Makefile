@@ -4,3 +4,4 @@ db_up:
 db_down:
 	psql -U postgres -d nats_streaming -a -f ~/projects/nats-server/migrations/down.sql  
 
+
