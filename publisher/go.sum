@@ -10,6 +10,8 @@ github.com/dissatisfied-nerd/nats-streaming/pkg/model v0.0.0-20231022025245-939f
 github.com/dissatisfied-nerd/nats-streaming/pkg/model v0.0.0-20231022025245-939f4d163476/go.mod h1:TL+gxFMuGiOzrz2oOZlrgGXy09K695EUTNfh4RIX2+w=
 github.com/dissatisfied-nerd/nats-streaming/pkg/model v0.0.0-20231022183710-0c89da029a77 h1:ZPE2ZYlRZHj+x86TqRPDedjZH+fYOxQ/oztV19yj+LI=
 github.com/dissatisfied-nerd/nats-streaming/pkg/model v0.0.0-20231022183710-0c89da029a77/go.mod h1:TL+gxFMuGiOzrz2oOZlrgGXy09K695EUTNfh4RIX2+w=
+github.com/dissatisfied-nerd/nats-streaming/pkg/model v0.0.0-20231022185631-c6a12ca8db16 h1:8l1fDX5g8POtkaKdHHXXuAhX25Fx9ee7Vj8DMeyvKkU=
+github.com/dissatisfied-nerd/nats-streaming/pkg/model v0.0.0-20231022185631-c6a12ca8db16/go.mod h1:TL+gxFMuGiOzrz2oOZlrgGXy09K695EUTNfh4RIX2+w=
 github.com/fatih/color v1.13.0 h1:8LOYc1KYPPmyKMuN8QV2DNRWNbLo6LZ0iLs8+mlH53w=
 github.com/fatih/color v1.13.0/go.mod h1:kLAiJbzzSOZDVNGyDpeOxJ47H46qBXwg5ILebYFFOfk=
 github.com/gogo/protobuf v1.3.2 h1:Ov1cvc58UF3b5XjBnZv7+opcTcQFZebYjWzi34vdm4Q=

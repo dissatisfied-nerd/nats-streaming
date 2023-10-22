@@ -56,12 +56,13 @@ func main() {
 	natsChannel := os.Getenv("NATS_CHANNEL")
 
 	var delay time.Duration = 10 * time.Second
-	var tmp = 1
 
 	for {
-		order.Order_uid = fmt.Sprintf("%d", tmp)
+		tmp := fmt.Sprintf("%d", time.Now().Unix())
 
-		tmp++
+		order.Order_uid = tmp
+		order.Delivery.Order_id = tmp
+		order.Payment.Order_id = tmp
 
 		message, err := json.Marshal(order)
 

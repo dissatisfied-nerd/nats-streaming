@@ -18,6 +18,8 @@ type Payment struct {
 }
 
 type Items struct {
+	Order_id string `db:"order_id"`
+
 	Chrt_id      int    `db:"chrt_id" json:"chrt_id"`
 	Track_number string `db:"track_number" json:"track_number"`
 	Price        int    `db:"price" json:"prive"`

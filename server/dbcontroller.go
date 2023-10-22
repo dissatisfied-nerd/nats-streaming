@@ -140,14 +140,23 @@ func (db *DBClient) GetOrderById(id string) model.Order {
 		log.Fatalf("DATABASE SELECT ORDER: %f", err)
 	}
 
-	/*err = db.conn.Get(&order.Payment, "SELECT * FROM payment WHERE order_uid=$1", id)
+	err = db.conn.Get(&order.Payment, "SELECT * FROM payment WHERE order_id=$1", id)
 
 	if err != nil {
 		log.Fatalf("DATABASE SELECT: %f", err)
 	}
 
-	fmt.Println(order)
-	*/
+	err = db.conn.Get(&order.Delivery, "SELECT * FROM delivery WHERE order_id=$1", id)
+
+	if err != nil {
+		log.Fatalf("DATABASE SELECT: %f", err)
+	}
+
+	err = db.conn.Get(&order.Items, "SELECT * FROM items WHERE order_id=$1", id)
+
+	if err != nil {
+		log.Fatalf("DATABASE SELECT: %f", err)
+	}
 
 	return order
 }
