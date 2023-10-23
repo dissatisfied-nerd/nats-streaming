@@ -14,7 +14,10 @@ import (
 	sub "github.com/dissatisfied-nerd/ns-service/pkg/subscriber"
 )
 
-var db *dbctl.DBClient
+var (
+	mCache *cache.MemCache
+	db     *dbctl.DBClient
+)
 
 func generateOutput(data interface{}) {
 	datavalue := reflect.ValueOf(data)
@@ -55,7 +58,17 @@ func handleRoot(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+func loadCache() {
+	orders := db.GetAllOrders()
+
+	for _, order := range orders {
+		mCache.Add(order)
+	}
+}
+
 func main() {
+	loadCache()
+
 	dbUser := os.Getenv("POSTGRES_USER")
 	dbPassword := os.Getenv("POSTGRES_PASSWORD")
 	dbName := os.Getenv("POSTGRES_NAME")
@@ -70,7 +83,7 @@ func main() {
 	ns := sub.NewNSConnection(nsURL, nsCluster, nsClient)
 	ns.Channel = nsChannel
 
-	mCache := cache.NewMemCache()
+	mCache = cache.NewMemCache()
 
 	ns.Listen(db, mCache)
 

@@ -80,7 +80,7 @@ func main() {
 			log.Fatal(err)
 		}
 
-		fmt.Printf("Sent message with order_uid = %s\n", order.Order_uid)
+		fmt.Printf("[PUBLISHER]: Sent message with order_uid = %s\n", order.Order_uid)
 
 		time.Sleep(delay)
 	}
