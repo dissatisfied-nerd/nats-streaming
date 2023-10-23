@@ -47,9 +47,11 @@ func (ns *NSConnection) Listen(db *DBClient) {
 				log.Fatalf("SUBSCRIBER: %f", err)
 			}
 
-			db.InsertOrder(order)
-			fmt.Printf("SUBSCRIBER: inserted order with order_uid = %s", order.Order_uid)
+			status := db.InsertOrder(order)
 
+			if status {
+				fmt.Printf("SUBSCRIBER: inserted order with order_uid = %s\n", order.Order_uid)
+			}
 		}, stan.DeliverAllAvailable())
 
 	if err != nil {

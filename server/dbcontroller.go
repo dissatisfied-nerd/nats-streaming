@@ -87,7 +87,11 @@ type queryData struct {
 	insertValues []interface{}
 }
 
-func (db *DBClient) InsertOrder(order model.Order) {
+func (db *DBClient) InsertOrder(order model.Order) bool {
+	if _, check := db.GetOrderById(order.Order_uid); check == true {
+		return false
+	}
+
 	orderQuery, orderValues := generateQuery("orders", order)
 	paymentQuery, paymentValues := generateQuery("payment", order.Payment)
 	deliveryQuery, deliveryValues := generateQuery("delivery", order.Delivery)
@@ -129,12 +133,18 @@ func (db *DBClient) InsertOrder(order model.Order) {
 			log.Fatalf("DATABASE INSERT: %f", err)
 		}
 	}
+
+	return true
 }
 
-func (db *DBClient) GetOrderById(id string) model.Order {
+func (db *DBClient) GetOrderById(id string) (model.Order, bool) {
 	order := model.Order{}
 
 	err := db.conn.Get(&order, "SELECT * FROM orders WHERE order_uid=$1", id)
+
+	if order.Order_uid == "" {
+		return order, false
+	}
 
 	if err != nil {
 		log.Fatalf("DATABASE SELECT ORDER: %f", err)
@@ -160,9 +170,7 @@ func (db *DBClient) GetOrderById(id string) model.Order {
 		log.Fatalf("DATABASE SELECT ITEMS: %f", err)
 	}
 
-	fmt.Println(items.Brand)
-
-	return order
+	return order, true
 }
 
 func (db *DBClient) GetAllOrders() []model.Order {
