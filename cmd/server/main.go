@@ -31,9 +31,9 @@ func handleRoot(w http.ResponseWriter, r *http.Request) {
 			outputData, _ := json.Marshal(data)
 			io.WriteString(w, string(outputData[:]))
 		} else {
-			data, status := db.GetOrderById(id)
+			data := mCache.Get(id)
 
-			if !status {
+			if data.Order_uid == "" {
 				io.WriteString(w, fmt.Sprintf("No order with id = %s", id))
 			} else {
 				outputData, _ := json.Marshal(data)
