@@ -1,11 +1,11 @@
-github.com/dissatisfied-nerd/ns-service/internal/cache v0.0.0-20231023010037-d26287a37382 h1:k3/bIbauxkfhjBWIfaDZ57pPx/roDFq0jUpEyeLPS0g=
-github.com/dissatisfied-nerd/ns-service/internal/cache v0.0.0-20231023010037-d26287a37382/go.mod h1:klv+YxKnQItdIbRZmv2wnGWnUL843idhzbHFOtisiOE=
-github.com/dissatisfied-nerd/ns-service/internal/dbcontroller v0.0.0-20231023010037-d26287a37382 h1:/pYQqapK+rox5hhEfct2gIiyeSWJyy/pIUAWIw17rj0=
-github.com/dissatisfied-nerd/ns-service/internal/dbcontroller v0.0.0-20231023010037-d26287a37382/go.mod h1:CNWIbRSQqInvExYHXTs71rNEaAxc5x8yZGqA+jcs55s=
-github.com/dissatisfied-nerd/ns-service/internal/subscriber v0.0.0-20231023010037-d26287a37382 h1:gHtEIWIrL1pHofhuyLgahIm0nxpW/38imNajiYqk+3g=
-github.com/dissatisfied-nerd/ns-service/internal/subscriber v0.0.0-20231023010037-d26287a37382/go.mod h1:86BuUpf1J9u1PQ1cYXQoo5U/Frz9q8mGEjAsZ9TUYqY=
+github.com/dissatisfied-nerd/ns-service/pkg/cache v0.0.0-20231023012059-9d2c2ce165b1 h1:ElBcyYW8/xQIKSuOFIcOXaHSktcFRMG+QAqgTBZ/ezI=
+github.com/dissatisfied-nerd/ns-service/pkg/cache v0.0.0-20231023012059-9d2c2ce165b1/go.mod h1:I7P5y2oU5gQdvih4/F/eFqr6xqfOfimHItwR6JhACas=
+github.com/dissatisfied-nerd/ns-service/pkg/dbcontroller v0.0.0-20231023012059-9d2c2ce165b1 h1:8kV47703fYkJr/wH0jU/ZunqWUUy8OJpaunmlZnQ/2E=
+github.com/dissatisfied-nerd/ns-service/pkg/dbcontroller v0.0.0-20231023012059-9d2c2ce165b1/go.mod h1:Wi8Hw00ZZXrKIiA23pzggACMGQwYbTpgbfflmeHmC8A=
 github.com/dissatisfied-nerd/ns-service/pkg/model v0.0.0-20231023010037-d26287a37382 h1:hATIrz7V/QRGdROEPkO4g06j/c3GoXnSdKcy9vycvQo=
 github.com/dissatisfied-nerd/ns-service/pkg/model v0.0.0-20231023010037-d26287a37382/go.mod h1:oc6iB+JbhuCoenUjvGWq44jpLB+IKV8F8tfFtL11SH8=
+github.com/dissatisfied-nerd/ns-service/pkg/subscriber v0.0.0-20231023012059-9d2c2ce165b1 h1:TzffzmjBiK4yZ7mJUTbw0xQaOkEzecN5GFM/Td8hlQM=
+github.com/dissatisfied-nerd/ns-service/pkg/subscriber v0.0.0-20231023012059-9d2c2ce165b1/go.mod h1:wpS2DxH1j8dSpTS+8Z/KV46jzvHAl1Q+OcsAKFGzrDM=
 github.com/go-sql-driver/mysql v1.6.0/go.mod h1:DCzpHaOWr8IXmIStZouvnhqoel9Qv2LBy8hT2VhHyBg=
 github.com/gogo/protobuf v1.3.2 h1:Ov1cvc58UF3b5XjBnZv7+opcTcQFZebYjWzi34vdm4Q=
 github.com/gogo/protobuf v1.3.2/go.mod h1:P1XiOD3dCwIKUDQYPy72D8LYyHL2YPYrpS2s69NZV8Q=

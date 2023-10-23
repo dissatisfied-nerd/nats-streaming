@@ -8,9 +8,13 @@ import (
 	"net/http"
 	"os"
 	"reflect"
+
+	"github.com/dissatisfied-nerd/ns-service/pkg/cache"
+	dbctl "github.com/dissatisfied-nerd/ns-service/pkg/dbcontroller"
+	sub "github.com/dissatisfied-nerd/ns-service/pkg/subscriber"
 )
 
-var db *DBClient
+var db *dbctl.DBClient
 
 func generateOutput(data interface{}) {
 	datavalue := reflect.ValueOf(data)
@@ -56,16 +60,19 @@ func main() {
 	dbPassword := os.Getenv("POSTGRES_PASSWORD")
 	dbName := os.Getenv("POSTGRES_NAME")
 
-	db = NewDbclient(dbUser, dbPassword, dbName)
+	db = dbctl.NewDbclient(dbUser, dbPassword, dbName)
 
 	nsURL := os.Getenv("NATS_URL")
 	nsCluster := os.Getenv("NATS_CLUSTER")
 	nsClient := os.Getenv("NATS_SUBSCRIBER")
 	nsChannel := os.Getenv("NATS_CHANNEL")
 
-	ns := NewNSConnection(nsURL, nsCluster, nsClient)
+	ns := sub.NewNSConnection(nsURL, nsCluster, nsClient)
 	ns.Channel = nsChannel
-	ns.Listen(db)
+
+	mCache := cache.NewMemCache()
+
+	ns.Listen(db, mCache)
 
 	mux := http.NewServeMux()
 

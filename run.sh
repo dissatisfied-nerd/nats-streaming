@@ -1,8 +1,8 @@
 #!/bin/bash
 
 main_dir="/home/axr/projects/ns-service"
-publisher_dir="${main_dir}/publisher"
-server_dir="${main_dir}/server"
+publisher_dir="${main_dir}/cmd/publisher"
+server_dir="${main_dir}/cmd/server"
 
 export NATS_URL="localhost:8080"
 export NATS_CLUSTER="cluster"
@@ -10,7 +10,7 @@ export NATS_SUBSCRIBER="client"
 export NATS_PUBLISHER="publisher"
 export NATS_CHANNEL="channel"
 
-export PUBLISHER_DATA_PATH="/home/axr/projects/ns-service/publisher/data/model.json"
+export PUBLISHER_DATA_PATH="/home/axr/projects/ns-service/cmd/publisher/data/model.json"
 
 export POSTGRES_USER="postgres"
 export POSTGRES_PASSWORD="postgres"
