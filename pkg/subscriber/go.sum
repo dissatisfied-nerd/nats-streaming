@@ -1,5 +1,7 @@
 github.com/dissatisfied-nerd/ns-service/pkg/cache v0.0.0-20231023012059-9d2c2ce165b1 h1:ElBcyYW8/xQIKSuOFIcOXaHSktcFRMG+QAqgTBZ/ezI=
 github.com/dissatisfied-nerd/ns-service/pkg/cache v0.0.0-20231023012059-9d2c2ce165b1/go.mod h1:I7P5y2oU5gQdvih4/F/eFqr6xqfOfimHItwR6JhACas=
+github.com/dissatisfied-nerd/ns-service/pkg/cache v0.0.0-20231023015205-41b32c7b0208 h1:L91EwMMfJZh9W21QbTlkuK6Vje0AbAYVJnLWMVj2V4w=
+github.com/dissatisfied-nerd/ns-service/pkg/cache v0.0.0-20231023015205-41b32c7b0208/go.mod h1:I7P5y2oU5gQdvih4/F/eFqr6xqfOfimHItwR6JhACas=
 github.com/dissatisfied-nerd/ns-service/pkg/dbcontroller v0.0.0-20231023012059-9d2c2ce165b1 h1:8kV47703fYkJr/wH0jU/ZunqWUUy8OJpaunmlZnQ/2E=
 github.com/dissatisfied-nerd/ns-service/pkg/dbcontroller v0.0.0-20231023012059-9d2c2ce165b1/go.mod h1:Wi8Hw00ZZXrKIiA23pzggACMGQwYbTpgbfflmeHmC8A=
 github.com/dissatisfied-nerd/ns-service/pkg/model v0.0.0-20231023010037-d26287a37382 h1:hATIrz7V/QRGdROEPkO4g06j/c3GoXnSdKcy9vycvQo=

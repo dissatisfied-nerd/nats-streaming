@@ -3,7 +3,7 @@ module server
 go 1.21.2
 
 require (
-	github.com/dissatisfied-nerd/ns-service/pkg/cache v0.0.0-20231023012059-9d2c2ce165b1 // indirect
+	github.com/dissatisfied-nerd/ns-service/pkg/cache v0.0.0-20231023015205-41b32c7b0208 // indirect
 	github.com/dissatisfied-nerd/ns-service/pkg/dbcontroller v0.0.0-20231023012059-9d2c2ce165b1 // indirect
 	github.com/dissatisfied-nerd/ns-service/pkg/model v0.0.0-20231023010037-d26287a37382 // indirect
 	github.com/dissatisfied-nerd/ns-service/pkg/subscriber v0.0.0-20231023012059-9d2c2ce165b1 // indirect

@@ -53,10 +53,6 @@ func loadCache() {
 }
 
 func main() {
-	//loading cache
-	mCache = cache.NewMemCache()
-	loadCache()
-
 	//databse info
 	dbUser := os.Getenv("POSTGRES_USER")
 	dbPassword := os.Getenv("POSTGRES_PASSWORD")
@@ -72,6 +68,10 @@ func main() {
 
 	ns := sub.NewNSConnection(nsURL, nsCluster, nsClient)
 	ns.Channel = nsChannel
+
+	//loading cache from db
+	mCache = cache.NewMemCache()
+	loadCache()
 
 	//listen asyncrhonously
 	ns.Listen(db, mCache)
