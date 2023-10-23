@@ -47,7 +47,6 @@ func handleRoot(w http.ResponseWriter, r *http.Request) {
 				outputData, _ := json.Marshal(data)
 				io.WriteString(w, string(outputData[:]))
 			}
-
 		}
 	}
 }
