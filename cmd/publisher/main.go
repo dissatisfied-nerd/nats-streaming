@@ -7,7 +7,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/dissatisfied-nerd/nats-streaming/pkg/model"
+	"github.com/dissatisfied-nerd/ns-service/pkg/model"
 
 	"github.com/nats-io/stan.go"
 )
@@ -49,7 +49,7 @@ func main() {
 	nsClient := os.Getenv("NATS_PUBLISHER")
 
 	fmt.Printf("URL: %s, Cluster_ID: %s, Client_ID: %s \n", nsUrl, nsCluster, nsClient)
-	fmt.Println("Connecting to nats-streaming-server...")
+	fmt.Println("Connecting to ns-service-server...")
 
 	connection := NSConnect(nsUrl, nsCluster, nsClient)
 
