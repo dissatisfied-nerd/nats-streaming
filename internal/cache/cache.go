@@ -4,7 +4,7 @@ import (
 	"log"
 	"sync"
 
-	"github.com/dissatisfied-nerd/nats-streaming/pkg/model"
+	"github.com/dissatisfied-nerd/ns-service/pkg/model"
 )
 
 type MemCache struct {

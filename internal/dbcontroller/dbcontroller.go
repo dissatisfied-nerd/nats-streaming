@@ -1,4 +1,4 @@
-package main
+package dbcontroller
 
 import (
 	"encoding/json"
@@ -7,7 +7,7 @@ import (
 	"reflect"
 	"strings"
 
-	"github.com/dissatisfied-nerd/nats-streaming/pkg/model"
+	"github.com/dissatisfied-nerd/ns-service/pkg/model"
 
 	"github.com/jmoiron/sqlx"
 	_ "github.com/lib/pq"

@@ -1,11 +1,11 @@
-package main
+package subscriber
 
 import (
 	"encoding/json"
 	"fmt"
 	"log"
 
-	"github.com/dissatisfied-nerd/nats-streaming/pkg/model"
+	"github.com/dissatisfied-nerd/ns-service/pkg/model"
 	"github.com/nats-io/stan.go"
 )
 
