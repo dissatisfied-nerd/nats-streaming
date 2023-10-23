@@ -21,6 +21,7 @@ type DBClient struct {
 	Name     string
 }
 
+// DBClient constructor
 func NewDbclient(dbUser, dbPassword, dbName string) *DBClient {
 	conn, err := sqlx.Connect("postgres", fmt.Sprintf("user=%s password=%s dbname=%s sslmode=disable",
 		dbUser, dbPassword, dbName))
@@ -42,6 +43,7 @@ func NewDbclient(dbUser, dbPassword, dbName string) *DBClient {
 	return &db
 }
 
+// generating SQL query
 func generateQuery(tableName, data interface{}) (string, []interface{}) {
 	var columns []string
 	var variables []string
@@ -87,6 +89,7 @@ type queryData struct {
 	insertValues []interface{}
 }
 
+// Inseerting order
 func (db *DBClient) InsertOrder(order model.Order) bool {
 	if _, check := db.GetOrderById(order.Order_uid); check == true {
 		return false
@@ -137,6 +140,7 @@ func (db *DBClient) InsertOrder(order model.Order) bool {
 	return true
 }
 
+// Selecting order by order_uid
 func (db *DBClient) GetOrderById(id string) (model.Order, bool) {
 	order := model.Order{}
 
@@ -173,6 +177,7 @@ func (db *DBClient) GetOrderById(id string) (model.Order, bool) {
 	return order, true
 }
 
+// selecting all correct orders
 func (db *DBClient) GetAllOrders() []model.Order {
 	var result []model.Order
 	orders := []model.Order{}

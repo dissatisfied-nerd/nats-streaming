@@ -16,6 +16,8 @@ export POSTGRES_USER="postgres"
 export POSTGRES_PASSWORD="postgres"
 export POSTGRES_NAME="nats_streaming"
 
+export SERVER_PORT=":9090"
+
 if [[ $1 == "publisher" ]]; then
     cd ${publisher_dir}
     go run .

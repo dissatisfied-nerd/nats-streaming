@@ -7,7 +7,6 @@ import (
 	"log"
 	"net/http"
 	"os"
-	"reflect"
 
 	"github.com/dissatisfied-nerd/ns-service/pkg/cache"
 	dbctl "github.com/dissatisfied-nerd/ns-service/pkg/dbcontroller"
@@ -19,21 +18,7 @@ var (
 	db     *dbctl.DBClient
 )
 
-func generateOutput(data interface{}) {
-	datavalue := reflect.ValueOf(data)
-	numOfFields := datavalue.NumField()
-	dataType := datavalue.Type()
-
-	for idx := 0; idx < numOfFields; idx++ {
-		fieldValue := datavalue.Field(idx).Interface()
-		fieldTag := dataType.Field(idx).Tag.Get("json")
-
-		if len(fieldTag) > 0 {
-			fmt.Printf("%s : %s\n", fieldTag, fieldValue)
-		}
-	}
-}
-
+// handler for http-server
 func handleRoot(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("[SERVER]: got request to root...")
 
@@ -58,6 +43,7 @@ func handleRoot(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+// cache loader
 func loadCache() {
 	orders := db.GetAllOrders()
 
@@ -67,14 +53,18 @@ func loadCache() {
 }
 
 func main() {
+	//loading cache
+	mCache = cache.NewMemCache()
 	loadCache()
 
+	//databse info
 	dbUser := os.Getenv("POSTGRES_USER")
 	dbPassword := os.Getenv("POSTGRES_PASSWORD")
 	dbName := os.Getenv("POSTGRES_NAME")
 
 	db = dbctl.NewDbclient(dbUser, dbPassword, dbName)
 
+	//nats-streaming info
 	nsURL := os.Getenv("NATS_URL")
 	nsCluster := os.Getenv("NATS_CLUSTER")
 	nsClient := os.Getenv("NATS_SUBSCRIBER")
@@ -83,19 +73,16 @@ func main() {
 	ns := sub.NewNSConnection(nsURL, nsCluster, nsClient)
 	ns.Channel = nsChannel
 
-	mCache = cache.NewMemCache()
-
+	//listen asyncrhonously
 	ns.Listen(db, mCache)
 
 	mux := http.NewServeMux()
 
 	mux.HandleFunc("/", handleRoot)
 
-	err := http.ListenAndServe(":9090", mux)
+	err := http.ListenAndServe(os.Getenv("SERVER_PORT"), mux)
 
 	if err != nil {
 		log.Fatalf("SERVER: %f", err)
 	}
-
-	db.GetAllOrders()
 }

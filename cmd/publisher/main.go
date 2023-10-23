@@ -12,6 +12,7 @@ import (
 	"github.com/nats-io/stan.go"
 )
 
+// connecting to nats-streaming server
 func NSConnect(nsUrl, nsCluster, nsClient string) stan.Conn {
 	connection, err := stan.Connect(nsCluster, nsClient, stan.NatsURL(nsUrl))
 
@@ -22,6 +23,7 @@ func NSConnect(nsUrl, nsCluster, nsClient string) stan.Conn {
 	return connection
 }
 
+// parsing orders json
 func ParseOrders(dataPath string) model.Order {
 	file, err := os.ReadFile(dataPath)
 
@@ -44,6 +46,7 @@ func main() {
 	dataPath := os.Getenv("PUBLISHER_DATA_PATH")
 	order := ParseOrders(dataPath)
 
+	//getting nats-streaming info from env
 	nsUrl := os.Getenv("NATS_URL")
 	nsCluster := os.Getenv("NATS_CLUSTER")
 	nsClient := os.Getenv("NATS_PUBLISHER")
@@ -55,9 +58,11 @@ func main() {
 
 	natsChannel := os.Getenv("NATS_CHANNEL")
 
+	//delay between sendings
 	var delay time.Duration = 10 * time.Second
 
 	for {
+		//generating unique order_uid from uinx time
 		tmp := fmt.Sprintf("%d", time.Now().Unix())
 
 		order.Order_uid = tmp

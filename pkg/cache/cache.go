@@ -7,15 +7,19 @@ import (
 	"github.com/dissatisfied-nerd/ns-service/pkg/model"
 )
 
+// simpliest cache on map with mutex ue to asynchronousness of subscriber
+
 type MemCache struct {
 	data  map[string]model.Order
 	mutex sync.Mutex
 }
 
 func NewMemCache() *MemCache {
+	var mutex sync.Mutex
+
 	return &MemCache{
 		make(map[string]model.Order),
-		sync.Mutex{},
+		mutex,
 	}
 }
 

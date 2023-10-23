@@ -21,6 +21,7 @@ type NSConnection struct {
 	Channel string
 }
 
+// NSConnection constructor
 func NewNSConnection(nsUrl, nsCluster, nsClient string) *NSConnection {
 	connection, err := stan.Connect(nsCluster, nsClient, stan.NatsURL(nsUrl))
 
@@ -38,6 +39,7 @@ func NewNSConnection(nsUrl, nsCluster, nsClient string) *NSConnection {
 	return &NSConn
 }
 
+// Async subscriber and consumer
 func (ns *NSConnection) Listen(db *dbctl.DBClient, m *cache.MemCache) {
 
 	_, err := ns.conn.Subscribe(
